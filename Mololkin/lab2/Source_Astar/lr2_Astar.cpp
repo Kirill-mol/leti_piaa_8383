@@ -149,7 +149,8 @@ public:
             curTop->print1();
             std::cout << std::endl;
             if(curTop->name == goal) {                                                                                  //если нашли конечную вызываем функцию для определения пути
-                std::cout << "End was finded";
+                std::cout << "End was finded" << std::endl;
+                std::cout << "Result :" << std::endl;
                 return reconstructPath(passedTops, startTop, isExistTop(goal));
             }
             removeFromOpenSet(curTop, openSet); //удаляем тек вершину из списка обрабатываемых
@@ -193,6 +194,6 @@ int main() {
     edgesList.sortTops(goal);  //сортируем для каждой вершины смежные по приоритету
     std::cout << "Graph after reading and sotring" << std::endl;
     edgesList.print();      //печатаем граф
-    std::cout << edgesList.findBestWay(start, goal); //вызываем функцию нахождения пути в графе
+    std::cout << edgesList.findBestWay(start, goal) << std::endl; //вызываем функцию нахождения пути в графе
     return 0;
 }
