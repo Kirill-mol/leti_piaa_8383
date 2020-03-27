@@ -145,7 +145,7 @@ public:
         GraphTop* curTop = startTop; //приравниваем текущей начальную
         while(!openSet.empty()) { //пока в списке есть вершины для обработки
             GraphTop* curTop = findBestTop(openSet); //ищем вершины с наименьшем значением fFunc
-            std::cout << "Current top:" << std::endl;
+            std::cout << "Best top in queue:" << curTop -> name <<std::endl;
             curTop->print1();
             std::cout << std::endl;
             if(curTop->name == goal) {                                                                                  //если нашли конечную вызываем функцию для определения пути
@@ -161,6 +161,7 @@ public:
                 if(isInClosedSet(curTop->adjacentEdges[i]->top, closedSet)) continue; // если смежная уже обработана, то пропускаем
                 double tentativeGScore = curTop->gFunc + curTop->adjacentEdges[i]->weight; // по данной переменной будем определять, является ли вершина лучшей
                 if(!isInClosedSet(curTop->adjacentEdges[i]->top, openSet)) { //если нет в очереди на обработку, то добавим туда
+                    std::cout << "Add to the queue:" << curTop->adjacentEdges[i]->top->name << std::endl;
                     openSet.push_back(curTop->adjacentEdges[i]->top);
                     tentativeIsBetter = true;
                 }
@@ -169,7 +170,6 @@ public:
                     else continue;
                 }
                 if (tentativeIsBetter){//если вершина лучшае
-                    std::cout << "Adjacent top "<< curTop->adjacentEdges[i]->top->name << " is better" << std::endl;
                     passedTops[curTop->adjacentEdges[i]->top] = curTop; //то добавим ее в путь
                     curTop->adjacentEdges[i]->top->gFunc = tentativeGScore; // заполняем значений функций g,f,h
                     curTop->adjacentEdges[i]->top->setHFunc(goal);
