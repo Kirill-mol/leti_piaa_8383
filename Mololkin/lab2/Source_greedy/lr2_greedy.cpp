@@ -49,14 +49,8 @@ public:
                 if ((get<0>(*edge) == startTop) && (get<2>(*edge) < get<2>(bestEdge)) && get<3>(*edge) != true) { //если оно является не пройденым, инцидентным данному, а также его вес меньше текущего лучшего
                     bestEdge = *edge;
                 }
-                if(get<1>(bestEdge) == endTop) { //если смежное является конечным
-                    std::cout << "Find end top!" << std::endl;
-                    finded = true; //значит нашли конечную
-                    stackk.push(endTop); //и добавляем ее на стек
-                    break;
-                }
             }
-            if(finded) break;
+            //if(finded) break;
             if(get<0>(bestEdge).empty()){ //если не нашли инцидентную или они все пройдены
                 std::cout << "There is no neighbour or there were passed for top (" << startTop <<")"<< std::endl;
                 string popedTop = stackk.top(); //снимаем со стека с вершины и приравниваем к новой переменной
@@ -73,6 +67,11 @@ public:
                 std::cout << "Best top for (" << startTop <<") is (" << get<1>(bestEdge) << ")" << std::endl;
                 stackk.push(get<1>(bestEdge)); //добавляем вершину на стек
                 startTop = get<1>(bestEdge); //и делаем ее стартовой
+            }
+            if(get<1>(bestEdge) == endTop) { //если смежное является конечным
+                    std::cout << "Find end top!" << std::endl;
+                    finded = true; //значит нашли конечную
+                    break;
             }
 
         }
