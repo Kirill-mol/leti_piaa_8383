@@ -1,0 +1,67 @@
+7
+a
+f
+a b 7
+a c 6
+b d 6
+c f 9
+d e 3
+d f 4
+e c 2
+
+16
+a
+e
+a b 20
+b a 20
+a d 10
+d a 10
+a c 30
+c a 30
+b c 40
+c b 40
+c d 10
+d c 10
+c e 20
+e c 20
+b e 30
+e b 30
+d e 10
+e d 10
+
+10
+a
+f
+a b 16
+a c 13
+c b 4
+b c 10
+b d 12
+c e 14
+d c 9
+d f 20
+e d 7
+e f 4
+
+19
+a
+j
+a b 2
+a c 9
+a d 3
+a e 5
+b e 4
+b h 7
+c d 8
+c f 5
+c g 4
+d g 6
+e g 8
+e h 1
+e j 6
+f g 3
+f i 2
+g j 4
+g i 9
+h j 5
+i j 8
