@@ -1,41 +1,61 @@
 #include <iostream>
 #include <vector>
 
-void prefixFunction(std::string& str, std::vector<int>& result) {
-    int n = str.length();
+void prefixFunction(const std::string& str, std::vector<int>& result) { //префикс функция
+    std::cout << "Start prefix function" << std::endl;
+    int n = str.length();                                           //получаем длину входной строки
+    std::cout << "Input string length: " << n << std::endl;
     for (int i = 1; i < n; ++i){
-        int j = result[i - 1];
-        while(j > 0 && str[i] != str[j])
-            j = result[j-1];
-        if(str[i] == str[j]) ++j;
-        result[i] = j;
+        std::cout << "Check symbol: " << str[i] << std::endl;   
+        int j = result[i - 1];                                      //приравниваем текущий j к значению результата префикс ффункции для предыдущего символа  
+        std::cout << "J = " << j << std::endl;
+        while(j > 0 && str[i] != str[j]) {                          //если символы не совпадают и j больше 0 переходим к предыдущему результирующем векторе
+            j = result[j - 1];   
+            std::cout << "\tChange j value: ";
+            std::cout << " j = " << j << std::endl;
+        }
+        if(str[i] == str[j]) ++j;                                   //если нашли совпадени увеличиваем j
+        result[i] = j;                                              // записываем результат для тек. символа
+        std::cout << "Prefix function for symbol " << str[i] << " is " << result[i] << std::endl;
     }
+    std::cout << "End prefix function \n" << std::endl;
 }
 
 void shift(std::string& str1, std::string& str2){
-    if(str1.length() != str2.length()) {
+    std::cout << "Start searching shift" << std::endl;
+    if(str1.length() != str2.length()) {                            //если длина строк разная
+        std::cout << "Strings lengths not equals" << std::endl;
         std::cout << -1;
     }
-    else if (str1 == str2) {
+    else if (str1 == str2) {                                        //если строки полностью совпадают
+        std::cout << "Strings are equals" << std::endl;
+        std::cout << "Result: ";
         std::cout << 0;
     }
-    else {
-        int size = str1.size();
+    else {                                                          //если длина одинаковая но строки не совпадают
+        std::cout << "Strings not equals" << std::endl;
+        int size = str1.size(); 
+        str2 += str1;                                               //создаем новую строку состаящуюю из второй и двух первых
         str2 += str1;
-        str2 += str1;        
-        str1.clear();
-        std::vector<int> result(str2.size());
-        prefixFunction(str2, result);
-        str2.clear();
-        bool isShift = false;
+        str1.clear();                                               //очищаем первую строку
+        std::cout << "Create new string " << str2 << std::endl;
+        std::vector<int> result(str2.size());                       
+        std::cout << "Call prefix function for new string \n" << std::endl;
+        prefixFunction(str2, result);                               //вызываем префикс функцию для новой строки
+        str2.clear();                                               //очищаем ее так как работать будем только с результатом
+        bool isShift = false;                                       //флаг для выхода из цикла
+        std::cout << "Search in result vector: " << size << std::endl;
         for(int i = 0; i < result.size(); i ++){
-            if(result[i] == size) {
+            if(result[i] == size) {                                 //нашли сдвиг
+                std::cout << "Shift was found, result index: ";
                 isShift = true;
-                std::cout << i - size*2 + 1;
+                std::cout << i - size*2 + 1;                        //печааем индекс
                 break;
             }
         }
-        if(!isShift) std::cout << -1;
+        if(!isShift) {                                              //если строка 2 не является циклическим сдвигом
+            std::cout << "Shift was found" << std::endl;
+        }
     }
 }
 
@@ -44,5 +64,6 @@ int main() {
     std::string str2;
     std::cin >> str1 >> str2;
     shift(str1, str2);
+    std::cout << std::endl;
     return 0;
 }
