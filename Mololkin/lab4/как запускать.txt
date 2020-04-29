@@ -1,0 +1,2 @@
+запускать в онлайн компиляторе:
+https://www.onlinegdb.com/online_c++_compiler
