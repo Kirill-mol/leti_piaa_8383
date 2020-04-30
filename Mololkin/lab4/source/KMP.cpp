@@ -12,11 +12,11 @@ void prefixFunction(const std::string& str, std::vector<int>& result) { //пре
         std::cout << "Current j = " << j << std::endl;
         while(j > 0 && str[i] != str[j]) {                          //если символы не совпадают и j больше 0 переходим к предыдущему результирующем векторе
             j = result[j - 1];   
-            std::cout << "Sumbols at position j in input string and current checking symbol not equal, change j value to result[j - 1]: j =  " << j << std::endl;
+            std::cout << "Symbols at position j in input string and current checking symbol not equal, change j value to result[j - 1]: j =  " << j << std::endl;
         }
         if(str[i] == str[j]) { //если нашли совпадени увеличиваем j
             ++j;
-            std::cout << "Sumbols at position j in input string and current checking symbol are equal, increase j, j = " << j << std::endl;
+            std::cout << "Symbols at position j in input string and current checking symbol are equal, increase j, j = " << j << std::endl;
         }                                  
         result[i] = j;                                              // записываем результат для тек. символа
         std::cout << "Prefix function for symbol " << str[i] << " index in input string = " << i << " is " << result[i] << std::endl;
