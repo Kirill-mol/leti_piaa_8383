@@ -2,21 +2,24 @@
 #include <vector>
 
 void prefixFunction(const std::string& str, std::vector<int>& result) { //префикс функция
-    std::cout << "Start prefix function" << std::endl;
+    std::cout << "Start prefix function for string: "<< str << std::endl;
+    std::cout << "result[0] = 0" << std::endl;
     int n = str.length();                                           //получаем длину входной строки
     std::cout << "Input string length: " << n << std::endl;
     for (int i = 1; i < n; ++i){
-        std::cout << "Check symbol: " << str[i] << std::endl;   
+        std::cout << "Check symbol: " << str[i] << " index in input string = " << i << std::endl;   
         int j = result[i - 1];                                      //приравниваем текущий j к значению результата префикс ффункции для предыдущего символа  
-        std::cout << "J = " << j << std::endl;
+        std::cout << "Current j = " << j << std::endl;
         while(j > 0 && str[i] != str[j]) {                          //если символы не совпадают и j больше 0 переходим к предыдущему результирующем векторе
             j = result[j - 1];   
-            std::cout << "\tChange j value: ";
-            std::cout << " j = " << j << std::endl;
+            std::cout << "Sumbols at position j in input string and current checking symbol not equal, change j value to result[j - 1]: j =  " << j << std::endl;
         }
-        if(str[i] == str[j]) ++j;                                   //если нашли совпадени увеличиваем j
+        if(str[i] == str[j]) { //если нашли совпадени увеличиваем j
+            ++j;
+            std::cout << "Sumbols at position j in input string and current checking symbol are equal, increase j, j = " << j << std::endl;
+        }                                  
         result[i] = j;                                              // записываем результат для тек. символа
-        std::cout << "Prefix function for symbol " << str[i] << " is " << result[i] << std::endl;
+        std::cout << "Prefix function for symbol " << str[i] << " index in input string = " << i << " is " << result[i] << std::endl;
     }
     std::cout << "End prefix function \n" << std::endl;
 }
